@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tick Tac Toe</title>
+    <link href="styles.css" rel="stylesheet" type="text/css"/>
+    <script src="javascript.js" defer></script>
+</head>
+<body>
+    <header>
+        <nav class="container-centered-offset link-container flex">
+            <div class="logo flex">
+                <img src="images/logo.svg" alt="">
+                TICK TAC TOE company
+            </div>
+            <ul class="flex">
+                <li><a href="#" class="link-container__link">Home</a></li>
+                <li><a href="#" class="link-container__link">About</a></li>
+                <li><a href="#" class="link-container__link">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="section stack" data-about-section>
+            <h1>Welcome to Tick Tac Toe</h1>
+            <p>
+            Tick Tac Toe is a simple well-known game. 
+            On this site you can play for fun either againt againt another user or against Ai.
+            </p>
+            <p>With computer we are challenging you with three levels of difficulty</p>
+            <ul>
+               <li>Easy</li>
+                <li>Normal</li>
+                <li>Hard</li>
+            </ul>
+            <p>
+                We hope you enjoi our game. Our game supports just 3 ✖ 3 for now.
+            </p>
+            <div class="highlight-block">
+            <div class="media">
+                <h2 class="media__title">Tick Tack Toe</h2>
+                <div class="media__body">
+                    <img class="media__image" src="images/tick-tack-toe.svg" alt="image of tick-tac-toe game">
+                    <div class="media__text">
+                    <p>Tic-tac-toe (American English), noughts and crosses (Commonwealth English), or Xs and Os (Canadian or Irish English) is a paper-and-pencil game for two players who take turns marking the spaces in a three-by-three grid, one with Xs and the other with Os. A player wins when they mark all three spaces of a row, column, or diagonal of the grid, whereupon they traditionally draw a line through those three marks to indicate the win. It is a solved game, with a forced draw assuming best play from both players.</p>
+                    <p>Games played on three-in-a-row boards can be traced back to ancient Egypt, where such game boards have been found on roofing tiles dating from around 1300 BC.
+An early variation of tic-tac-toe was played in the Roman Empire, around the first century BC. It was called terni lapilli (three pebbles at a time) and instead of having any number of pieces, each player had only three; thus, they had to move them around to empty spaces to keep playing. The game's grid markings have been found chalked all over Rome. Another closely related ancient game is three men's morris which is also played on a simple grid and requires three pieces in a row to finish, and Picaria, a game of the Puebloans.</p>
+                    </div>
+                </div>
+                <p class="media__source">
+                    Source: <a href="https://en.wikipedia.org/wiki/Tic-tac-toe">Wikipedia: Tic-tac-toe</a>,
+                    licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
+                </p>
+            </div>
+            </div>
+        </section>
+        <section class="section section--light" data-game-section>
+            <div class="cover"> <!-- Used to exclude padding specially. Otherwise mix with section -->
+            <img class="cover__image" src="images/cloudy_ocean.jpg" alt=""> <!--alt must be "" so that screenreader will ignore-->
+            <button class="button button--danger" data-reset-grid>Reset grid</button>
+            <div class="grate is-hazed" data-tick-tack-toe>
+                <div class="grate__backdrop"></div>
+                <div class="grate__message">
+                    Please click to start game;
+                </div>
+            </div>
+                <dialog class="dialog stack" data-choose_side aria-labelledby="side_choosing">
+                    <h3 class="dialog__title" id="side_choosing">Choose tick or toe</h3>
+                    <button class="button button--danger button--close"><span class="text-hidden">Close</span></button>
+                    <p>
+                        If you choose noughts you will be movind first. 
+                        Otherwise if you choose crosses you would be moving second.
+                    </p>
+                    <p>
+                        But know - in perfect game there will be always draw. So if you play perfect - you will not lose.
+                    </p>
+                    <button class="button button--success button--large" data-side="noughts">Noughts</button>
+                    <button class="button button--danger button--large"  data-side="crosses">Crosses</button>
+                </dialog>
+                <dialog class="dialog stack" data-choose_opponent aria-labelledby="choosing_opponent">
+                    <button class="button button--danger button--close"><span class="text-hidden">Close</span></button>
+                    <h3 class="dialog__title" id="choosing_opponent">Choose your opponent</h3>
+                    <p>
+                        If you choose Player 2 you will be playing vs your friend on one computer.
+                    </p>
+                    <button class="button button--large" data-opponent="computer">Computer</button>
+                    <button class="button button--large" data-opponent="player2">Player2</button>
+                </dialog>
+                <dialog class="dialog stack" data-choose_ai_difficulty aria-labelledby="ai-difficulty">
+                    <button class="button button--danger button--close"><span class="text-hidden">Close</span></button>
+                    <h3 class="dialog__title" id="ai-difficulty">Choose difficulty of Computer</h3>
+                    <p>
+                        You can beat easy on ease if you know rules.
+                        Normal will not let you win so easily - think about making some kind of fork.
+                        Hard demand from you to seek specific combinations. But be aware - Hard is unbeatable in current implementation.
+                    </p>
+                    <button class="button button--large" data-difficulty="easy">Easy</button>
+                    <button class="button button--large" data-difficulty="normal">Normal</button>
+                    <button class="button button--large" data-difficulty="hard">Hard</button>
+                </dialog>
+                <dialog class="dialog stack" data-game_end_message aria-labelledby="results_game">
+                    <button class="button button--danger button--close"><span class="text-hidden">Close</span></button>
+                    <h3 class="dialog__title" id="results_game" data-results-title></h3>
+                    <p data-results-text></p>
+                </dialog>
+            </div>
+        </section>
+        <section class="section" data-stats-section>
+            <div>
+            </div>
+            <div class="dropdown dropdown--large" data-stats>
+            <button class="button button--large dropdown__toggle parent-width" aria-expanded="false" aria-controls="stats-drawer" data-stats-dropdown-toggle>Reveal stats</button>
+            <div class="dropdown__drawer" id="stats-drawer">
+                <div class="menu">
+                    <button class="text-snippet parent-width text-snippet--important" data-username-option>Player1</button>
+                    <dialog class="dialog dialog--unimportant" data-user-name aria-labelledby="user_name">
+                        <button class="button button--danger button--close"><span class="text-hidden">Close</span></button>
+                        <h3 class="dialog__title" id="user_name">Your name</h3>
+                        <p>Nice to meet you! Please select your name.</p>
+                        <form class="stack" data-user-name-form>
+                            <label for="username">We shall call you: </label>
+                            <input id="username" maxlength="50" required data-username-input>
+                            <div>
+                            <button type="submit" class="button button--success" data-submit-user-name>Submit</button>
+                            </div>
+                        </form>
+                    </dialog>
+                    <button class="text-snippet parent-width" data-wins_number>Number of wins</button>
+                    <dialog class="dialog dialog--unimportant" data-wins-dialog aria-labelledby="user_wins_results">
+                        <button class="button button--danger button--close"><span class="text-hidden">Close</span></button>
+                        <h3 class="dialog__title" id="user_wins_results">Your wins so far</h3>
+                        <p data-wins-text>Your number of wins is 0.  There are no games yet - so your winrate will remain riddle to us.</p>
+                    </dialog>
+                    <button class="text-snippet parent-width" data-loses_number>Number of loses</button>
+                    <dialog class="dialog dialog--unimportant" data-loses-dialog aria-labelledby="user_loses_results">
+                        <button class="button button--danger button--close"><span class="text-hidden">Close</span></button>
+                        <h3 class="dialog__title" id="user_loses_results">Your loses so far</h3>
+                        <p data-loses-text>Your number of loses is 0.  There are no games yet - so your lose rate will remain riddle to us</p>
+                    </dialog>
+                    <button class="text-snippet parent-width" data-ties_number>Number of ties</button>
+                    <dialog class="dialog dialog--unimportant" data-ties-dialog aria-labelledby="user_ties_results">
+                        <button class="button button--danger button--close"><span class="text-hidden">Close</span></button>
+                        <h3 class="dialog__title" id="user_ties_results">Your ties so far</h3>
+                        <p data-ties-text>Your number of ties is 0. There are no games yet - so your tie rate will remain riddle to us</p>
+                    </dialog>
+                    <button class="text-snippet parent-width" data-history>History log</button>
+                    <dialog class="dialog dialog--unimportant" data-history-dialog aria-labelledby="history_of_games">
+                        <button class="button button--danger button--close"><span class="text-hidden">Close</span></button>
+                        <h3 class="dialog__title" id="history_of_games">Your history so far</h3>
+                        <p>Your results of last 50 matches will be here</p>
+                        <div class="feed" data-history-log>
+
+                        </div>
+                    </dialog>
+                </div>
+            </div>
+            </div>
+            <h3>Stats</h3>
+            <p>Click on button to see statisticks we gathered for you.</p>
+            <p>You can see your number of wins, loses or ties. You can also choose your name - to set it just click on Player1.</p>
+            <p>We hope you enjoy this game. It is generational one!</p>
+            <p>Click here to support us:</p>
+            <a class="text-snippet" href="#">Visa card</a>
+        </section>
+    </main>
+    <footer>
+        Tick Tac To Odin project. Copyright 2026. All rights are reserved.
+    </footer>
+</body>
+</html>
