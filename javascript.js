@@ -480,6 +480,7 @@ function GameController(gameBoard,Grid,player1,player2,player_turn){
         return player_turn;
     }
     function reset(){
+        console.log(player_turn_conservated)
         game_over = false;
         string = null;
         player_turn = player_turn_conservated;
@@ -543,13 +544,12 @@ const images = {
             update_stats(player1,gamecontroller.GameEnd());
             player1.update_title();
             opponent_player.update_title();
-            player_turn = gamecontroller.get_player_turn();
-            document.documentElement.style.setProperty("--bhs-image-to-show",`url(${images[player_turn ? player1.side : opponent_player.side]})`)
             gamecontroller.reset();
             gamecontroller.get_Grid().unlock_grid();
-            if (opponent_player.name === "computer" && !player_turn){
+            if (opponent_player.name === "computer" && !gamecontroller.get_player_turn()){
             gamecontroller.make_move(...opponent_player.make_move(gamecontroller.get_gameBoard(),player1.side))
             }
+            document.documentElement.style.setProperty("--bhs-image-to-show",`url(${images[gamecontroller.get_player_turn() ? player1.side : opponent_player.side]})`)
         }
         return;
     }
@@ -562,8 +562,7 @@ const images = {
     if (opponent_player.name === "computer"){
         if (!gamecontroller.get_game_ended()) gamecontroller.make_move(...opponent_player.make_move(gamecontroller.get_gameBoard(),player1.side));
     }else{
-        player_turn = gamecontroller.get_player_turn();
-        document.documentElement.style.setProperty("--bhs-image-to-show",`url(${images[player_turn ? player1.side : opponent_player.side]})`)
+        document.documentElement.style.setProperty("--bhs-image-to-show",`url(${images[gamecontroller.get_player_turn() ? player1.side : opponent_player.side]})`)
     }
     gamecontroller.show_game_message(gamecontroller.GameEnd(),player1,game_end_message,game_end_message_title,game_end_message_body);
 })
@@ -582,9 +581,8 @@ choose_side_dialog.addEventListener("click",(e) => {
         gamecontroller = GameController(gameboard,grid,player1,opponent_player,player_turn);
         if (opponent_player.name === "computer" && !player_turn){
             gamecontroller.make_move(...opponent_player.make_move(gamecontroller.get_gameBoard(),player1.side));
-            player_turn = gamecontroller.get_player_turn();
         }
-        document.documentElement.style.setProperty("--bhs-image-to-show",`url(${images[player_turn ? player1.side : opponent_player.side]})`)
+        document.documentElement.style.setProperty("--bhs-image-to-show",`url(${images[gamecontroller.get_player_turn() ? player1.side : opponent_player.side]})`)
     }
 })
 choose_opponent_dialog.addEventListener("click",(e)=>{
