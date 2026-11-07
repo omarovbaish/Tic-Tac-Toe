@@ -592,7 +592,7 @@ choose_opponent_dialog.addEventListener("click",(e)=>{
         return;
     }
     if (e.target.classList.contains("button")){
-        player_opponent = e.target.dataset.opponent.toLowerCase();
+        const player_opponent = e.target.dataset.opponent.toLowerCase();
         if (player_opponent === "computer"){
             opponent_player = player3;
             choose_ai_difficulty.showModal();
@@ -672,9 +672,9 @@ game_end_message.addEventListener("click",(e)=>{
     }
 })
 data_reset_grid.addEventListener("click",(e)=>{
-    update_stats(player1,gamecontroller.GameEnd());
+    update_stats(player1,gamecontroller?.GameEnd());
     player1.update_title();
-    opponent_player.update_title();
+    opponent_player?.update_title();
     game_grid.classList.add("is-hazed");
     gamecontroller?.reset();
     gamecontroller = null;
